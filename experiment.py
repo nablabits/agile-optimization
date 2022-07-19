@@ -37,7 +37,7 @@ class ExperimentEnvironment:
             "source_data/stories_estimations_from_shortcut.csv", index_col=0
         )
         if no_20:
-            shortcut_stories = shortcut_stories[shortcut_stories < 20]
+            shortcut_stories = shortcut_stories[shortcut_stories.estimate < 20]
         self.shortcut_stories = shortcut_stories.copy()
         self.no_20 = no_20
 
@@ -235,7 +235,7 @@ class ExperimentEnvironment:
             real_size[under_1] = entries + noise
             under_1 = real_size < 1
             max_iter -= 1
-        assert np.sum(real_size < 1) == 0, f"max iterations exhausted, {under_1.shape}"
+        assert np.sum(real_size < 1) == 0, f"Max iterations exhausted, {under_1.shape}"
         return real_size.astype(np.int8)
 
     def get_env(self, use_cache=False, save=True):
@@ -423,9 +423,7 @@ def evaluate_algorithm(algorithm_class, no_20=False, *args, **kwargs):
     """
     The common procedure to evaluate a given algorithm so the process is the same for all of them.
     """
-    sprints, stories = ExperimentEnvironment(no_20=no_20).get_env(
-        use_cache=True
-    )  # use the 5k env
+    sprints, stories = ExperimentEnvironment(no_20=no_20).get_env(use_cache=True)  # use the 5k env
     a1 = algorithm_class(sprints, stories, *args, **kwargs)
     algorithm_outcome = a1.run()
     ev = ExperimentEvaluator(algorithm_outcome, sprints, stories)

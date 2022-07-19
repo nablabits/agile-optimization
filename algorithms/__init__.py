@@ -7,3 +7,4 @@ from algorithms.E02_simple_algorithm_recalling_mean import (
 from algorithms.E03_shifted_stories import E03ShiftedStories
 from algorithms.E04_loss_fn import E04LossFN
 from algorithms.E05_loss_fn_shifted import E05LossFNShifted
+from algorithms.E06_linear_regression import E06LinearRegression

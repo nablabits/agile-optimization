@@ -34,7 +34,7 @@ class BaseAlgorithm:
         sprint_stories = self.stories[self.stories.sprint_id == sprint]
         base = sprint_stories[sprint_stories.estimated_size.cumsum() <= points]
         if base.empty:
-            # Sometimes happen that we have a sprint whose estimated length is smaller than the
+            # Sometimes it happens that we have a sprint whose estimated length is smaller than the
             # first of the stories. For instance sprint #748 has an estimated length of 19 points
             # and the first story is 20 points.
             self.bkp_indices.append(sprint_stories.index.min())
