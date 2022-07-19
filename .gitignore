@@ -60,6 +60,4 @@ docs/_build/
 
 # jupyter checkpoints
 **/.ipynb_checkpoints/
-
-# source data
-entries.json
+sandbox.ipynb
