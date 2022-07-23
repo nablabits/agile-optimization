@@ -200,7 +200,7 @@ class ExperimentEnvironment:
         data = pd.read_csv("source_data/story_points.csv")
         durations = self.shortcut_stories.estimate.max() * data.dur / data.dur.max()
         scores = data.score
-        return (scores - durations).round().astype(np.int8)
+        return (durations - scores).round().astype(np.int8)
 
     def _get_real_size(self, estimated_size):
         """
